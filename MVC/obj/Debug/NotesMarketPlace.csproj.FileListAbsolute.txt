@@ -80,8 +80,8 @@ C:\Users\dnc\source\repos\NotesMarketPlace\bin\System.Web.WebPages.Razor.xml
 C:\Users\dnc\source\repos\NotesMarketPlace\bin\Newtonsoft.Json.xml
 C:\Users\dnc\source\repos\NotesMarketPlace\bin\Antlr3.Runtime.pdb
 C:\Users\dnc\source\repos\NotesMarketPlace\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\dnc\source\repos\NotesMarketPlace\obj\Debug\NotesMarketPlace.csprojAssemblyReference.cache
 C:\Users\dnc\source\repos\NotesMarketPlace\obj\Debug\NotesMarketPlace.csproj.CoreCompileInputs.cache
 C:\Users\dnc\source\repos\NotesMarketPlace\obj\Debug\NotesMarketPlace.csproj.CopyComplete
 C:\Users\dnc\source\repos\NotesMarketPlace\obj\Debug\NotesMarketPlace.dll
 C:\Users\dnc\source\repos\NotesMarketPlace\obj\Debug\NotesMarketPlace.pdb
+C:\Users\dnc\source\repos\NotesMarketPlace\obj\Debug\NotesMarketPlace.csprojAssemblyReference.cache

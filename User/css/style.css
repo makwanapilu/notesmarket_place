@@ -138,88 +138,11 @@ section {
     padding: 40px;
 }
 
-/*
-.dash {
-    margin-top: 20px;
-}
-
-.dash h4 {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 34px;
-    color: #6255a5;
-}
-
-.dash h4 span {
-    font-weight: 600;
-}
-
-.earning p,
-.ear-details div p {
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: 400;
-    color: #333333;
-}
-
-.ear-details {
-    padding: 0;
-    margin: 0;
-}
-
-.dash-01 {
-    border: 1px solid #d1d1d1;
-    height: 151px;
-}
-
-.box-01 {
-    border-right: 1px solid #d1d1d1;
-    height: 151px;
-}
-
-.box-02,
-.box-03 {
-    border-right: 1px solid #fff;
-    height: 151px;
-
-}
-
-.ear-content {
-    display: inline-block;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-}
-*/
 .first-table,
 .second-table {
     margin-top: 60px;
 }
 
-/*
-.box-05,
-.box-04,
-.box-06 {
-    border: 1px solid #d1d1d1;
-    height: 151px;
-
-}
-
-.dash-right {}
-
-
-/*
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-column-gap: 10px;
-}
-
-.dash2 {
-    float: right;
-    outline-offset: 1;
-}
-*/
 
 /* ================================================
                     Home
@@ -1640,6 +1563,74 @@ td .dropdown {
 #que-part-02,
 #que-part-03 {
     margin-top: 30px;
+}
+
+/*mydownload*/
+/* Base setup */
+
+/* Ratings widget */
+.rate {
+    display: inline-block;
+    border: 0;
+}
+
+/* Hide radio */
+.rate > input {
+    display: none;
+}
+
+/* Order correctly by floating highest to the right */
+.rate > label {
+    float: right;
+}
+
+/* The star of the show */
+.rate > label:before {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: .3rem .2rem;
+    margin: 0;
+    cursor: pointer;
+    font-family: FontAwesome;
+    content: "\f005 ";
+    /* full star */
+}
+
+/* Zero stars rating */
+.rate > label:last-child:before {
+    content: "\f006 ";
+    /* empty star outline */
+}
+
+/* Half star trick */
+.rate .half:before {
+    content: "\f089 ";
+    /* half star no outline */
+    position: absolute;
+    padding-right: 0;
+}
+
+/* Click + hover color */
+input:checked ~ label,
+/* color current and previous stars on checked */
+label:hover,
+label:hover ~ label {
+    color: #73B100;
+}
+
+/* color previous stars on hover */
+
+/* Hover highlights */
+input:checked + label:hover,
+input:checked ~ label:hover,
+/* highlight current and previous stars */
+input:checked ~ label:hover ~ label,
+/* highlight previous selected stars for new rating */
+label:hover ~ input:checked ~ label
+
+/* highlight previous selected stars */
+    {
+    color: #A6E72D;
 }
 
 /* ================================================
