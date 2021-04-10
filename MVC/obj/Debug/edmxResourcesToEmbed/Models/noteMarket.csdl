@@ -95,7 +95,7 @@
     <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
     <Property Name="sellerID" Nullable="false" Type="Int32" />
     <Property Name="status" Nullable="false" Type="Int32" />
-    <Property Name="actionedBy" Nullable="false" Type="Int32" />
+    <Property Name="actionedBy" Type="Int32" />
     <Property Name="adminRemark" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
     <Property Name="noteTitle" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
     <Property Name="notePicture" MaxLength="500" FixedLength="false" Unicode="false" Type="String" />

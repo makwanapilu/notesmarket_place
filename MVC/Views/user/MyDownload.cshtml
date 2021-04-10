@@ -6,7 +6,7 @@
     int i = 0;
     ViewBag.Title = "My Downloads";
 }
-<section id="mydownload" class="table-page">
+<section id="mydownload" class="table-page fixheight">
     <div class="content-box-md">
         <div class="container">
                 <!-- General heading -->
@@ -42,6 +42,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (Model.Count() == 0)
+                            {
+                                <tr> <td colspan="10" class="align-middle"> Records not found </td></tr>
+                            }
                             @foreach (NotesMarketPlace.Models.ViewModel item in (IEnumerable<NotesMarketPlace.Models.ViewModel>)ViewData.Model)
                             {
                                 <tr>
@@ -67,7 +71,6 @@
                                             <a class="nav-link" href="#" id="three-dot-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><img src="~/Content/images/icon-image/dots.png" alt="Dots-Menu"></span></a>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                                 <li><a href="/user/DownloadBookfromMyWindow?bookId=@item.downloadViewModel.noteID" class="dropdown-item">Download Note</a></li>
-                                                @*<li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal1-@item.downloadViewModel.id">Add Reviews/Feedback</a></li>*@
                                                 <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#exampleModal" id="reviewcode" onclick="addReview('@item.downloadViewModel.noteID')">Add Reviews/Feedback</a></li>
                                                 <li><a href="#" class="dropdown-item" data-toggle="modal" data-target="#exampleModal2" onclick="addReview('@item.downloadViewModel.noteID')">Report as Inappropriate</a></li>
                                             </ul>
@@ -80,7 +83,7 @@
 
                                                         <div class="modal-content review-modal inappropriate-modal">
                                                             <div class="modal-body">
-                                                                <div class="reportin general-heading"id="exampleModalLabel">
+                                                                <div class="reportin general-heading" id="exampleModalLabel">
                                                                     <h3>Report as Inappropriate</h3>
                                                                 </div>
                                                                 @Html.Label("noteTitle", "Note Title")
@@ -98,37 +101,6 @@
                                                         </div>}
                                                 </div>
                                             </div>
-                                            <!-- End of Modal for Report as inappropriate -->
-                                            <!-- Modal for Report as inappropriate -->
-                                            @*<div class="modal fade" id="modal2-@item.downloadViewModel.id" tabindex="-1" role="dialog" aria-labelledby="modal1-label">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content review-modal inappropriate-modal">
-
-                    <div class="modal-body">
-                        @using (Html.BeginForm("ReportAsInappropriate", "user", new { id = item.downloadViewModel.id }, FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            <div class="modal-body" id="report">
-                                <div class="reportin general-heading">
-                                    <h3>Report as Inappropriate</h3>
-                                </div>
-                                @Html.Label("noteTitle", "Note Title")
-                                @Html.TextBoxFor(m => item.downloadViewModel.noteTitle, new { @class = "form-control", @id = "exampleInput", @readonly = "true" })
-
-                                @Html.Label("remarks", "Remarks")
-                                @Html.TextAreaFor(m => item.NoteReportedIsuue.remarks, new { @class = "form-control modalinput-tag", @id = "exampleTextArea" })
-                                @Html.ValidationMessageFor(m => item.NoteReportedIsuue.remarks, "", new { @style = "color:red;" })
-                                <button type="submit" id="btnIssue" class="btn-inappropriate btn  ">Report An Issue</button>
-                                <button type="button" id="btnCancel" class="btn-in-cancel btn " data-dismiss="modal">Cancel</button>
-
-                            </div>
-
-                        }
-                    </div>
-                </div>
-
-            </div>
-        </div>*@
                                             <!-- End of Modal for Report as inappropriate -->
                                         </div>
                                     </td>
@@ -172,7 +144,6 @@
                                             </fieldset>
 
                                             <div class="form-group">
-
                                                 <label class="mylabel" for="comment">Comments</label>
                                                 <textarea type="text" rows="4" class="form-control" id="cmt" placeholder="Comments..." name="ratingComment" required></textarea>
 
@@ -181,11 +152,11 @@
                                             </div>
                                            
                                         </div>
-                                    </div>
-                                
+                                    </div>                             
 
                                      
-                                    </div>}
+                                    </div>
+                                    }
                                 </div>
                             </div>
                     <!-- End of Modal for Add review -->

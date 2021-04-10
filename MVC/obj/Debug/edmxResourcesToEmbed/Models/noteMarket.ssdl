@@ -84,7 +84,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sellerID" Type="int" Nullable="false" />
     <Property Name="status" Type="int" Nullable="false" />
-    <Property Name="actionedBy" Type="int" Nullable="false" />
+    <Property Name="actionedBy" Type="int" />
     <Property Name="adminRemark" Type="varchar(max)" />
     <Property Name="noteTitle" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="notePicture" Type="varchar" MaxLength="500" />

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="734fc871378f4fa1a8362adeb978ee13" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblDownload" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblManageCountry" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblManageNoteCategory" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblManageNoteType" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblNoteAttachement" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblNoteDetail" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblNoteReportedIsuue" Width="1.5" PointX="10.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblNoteReview" Width="1.5" PointX="13.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblReferenceData" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblSystemConfig" Width="1.5" PointX="2.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblUserProfile" Width="1.5" PointX="5.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblUserRole" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="notesmarketplaceModel.tblUser" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_downloads_noteDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_downloads_seller" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteReportedIsuues_downloads" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteReviews_downloads" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_tblDownloads_downloader" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_manageCountry_users" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_manageNoteCategory_users" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_manageNoteType_users" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteAttachement_noteDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteReportedIsuues_noteDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteReviews_noteDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteReportedIsuues_users" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_noteReviews_users" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_userProfile_users" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_users_userRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_tblNoteDetails_tblManageNoteCategory" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_tblNoteDetails_tblManageNoteType" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_tblNoteDetails_actionby" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_tblNoteDetails_sellerId" />
+        <AssociationConnector Association="notesmarketplaceModel.FK_tblNoteDetails_status" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

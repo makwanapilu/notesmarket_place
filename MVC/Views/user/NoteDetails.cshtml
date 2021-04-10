@@ -26,7 +26,14 @@
                                 <div class="col-md-5 col-xs-12 col-12">
                                     <!--Notesdetail left-->
                                     <div class="note-content-01">
-                                        <img src="@Url.Content(Model.noteDetailsViewModel.notePicture)" alt="Images" class="img-fluid" />
+                                        @if (Model.noteDetailsViewModel.notePicture != null)
+                                        {
+                                            <img style="min-height:300px; max-width:276px;" src="@Url.Content(Model.noteDetailsViewModel.notePicture)" alt="Images" class="img-responsive search-image img-fluid" />
+                                        }
+                                        else
+                                        {
+                                            <img style="min-height:258px; max-width:276px;" src="~/Image/DefaultBook.png" alt="Images" class="img-responsive search-image img-fluid" />
+                                        }
                                     </div>
                                 </div>
                                 <div class="col-md-7 col-xs-12 col-12">
@@ -41,7 +48,7 @@
                                         @if (Model.noteDetailsViewModel.isPaid == false)
                                         {
                                             <button id="btn-modal"  class="custombtn normal-btn btn btn-primary btn-modal " formmethod="post" type="submit">
-                                                <a href="/user/DownloadBook?sellerEmail=@Model.userViewModel&bookId=@Model.noteDetailsViewModel.id" >Download</a>
+                                                <a href="/user/DownloadBook?sellerEmail=@Model.userViewModel&bookId=@Model.noteDetailsViewModel.id">Download</a>
                                             </button>
                                         }
                                         else
@@ -245,7 +252,11 @@
                                         <div class="row review-cust">
                                             <div class="col-md-1 text-center">
                                                 @{
-                                                    string profileUrl = myreview.profileUrl.Split('~')[1];
+                                                    string profileUrl = null;
+                                                    if (myreview.profileUrl != null)
+                                                    {
+                                                        profileUrl = myreview.profileUrl.Split('~')[1];
+                                                    }
                                                 }
                                                 <img style="width: 50px;" src="@profileUrl">
                                             </div>

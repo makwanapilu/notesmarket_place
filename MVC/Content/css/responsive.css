@@ -169,6 +169,7 @@
     #modal2 {
         margin-top: 110px;
     }
+   
 }
 
 /* ----------------------large Devices---------------------*/
@@ -325,7 +326,16 @@
     #bg-full .container {
         padding: 10%;
     }
-
+    /*--------bg-full--------*/
+    #mobile-nav ul li a {
+        font-size: 16px;
+        margin: 0;
+    }
+    #mynavbtn>a{
+        
+        color:#fff;
+        
+    }
     /*--------form style--------*/
     .form_container {
         padding: 40px;
@@ -423,6 +433,7 @@
 /* ----------------------Small Devices---------------------*/
 @media (max-width: 575px) {
 
+
     /*--------form style--------*/
     .form_container {
         padding: 30px;
@@ -513,6 +524,11 @@
     /*---------Review popup---------*/
     #modal2 {
         margin-top: 100px;
+    }
+    .modal {
+        margin-left:70px;
+        margin-right:60px;
+        width:75%;
     }
 
     .review-modal {
@@ -749,7 +765,29 @@
         text-align: center;
         margin-left: 18px;
     }
-
+    /*---------Review popup---------*/
+    .modal{
+        width:80%;
+        height:70%;
+        margin-left:30px;
+    }
+    .rating>label{
+        font-size:20px;
+    }
+    .inappropriate-modal .form-control{
+        width:200px;
+    }
+    .inappropriate-modal .btn-in-cancel{
+        width:80px;
+        font-size:12px;
+    }
+    .inappropriate-modal .btn-inappropriate{
+        width:120px;
+        font-size:12px;
+    }
+    .reportin>h3{
+        font-size:18px;
+    }
 
 }
 
@@ -998,6 +1036,9 @@
 }
 
 @media(max-width:320px) {
+    section{
+        margin-top:0;
+    }
     #home-heading {
         font-size: 30px;
     }
@@ -1149,147 +1190,159 @@
 /* =======================================================================
                             dashboard
 ==========================================================================*/
-@media(max-width:575px) {
-    .dash h4 {
-        font-size: 22px;
-        line-height: 28px;
-    }
-
-    .box-01 {
-        border-right: none;
-        height: 130px;
-        border-bottom: 1px solid #d1d1d1;
-        padding-left: 20px;
-    }
-
-    .box-02,
-    .box-03,
-    .box-04,
-    .box-05,
-    .box-06 {
-        height: 130px;
-    }
-
-    .dash-left,
-    dash-right2 {
-        padding: 0;
-    }
-
-    .box-04,
-    .box-05,
-    .box-06 {
+@media(max-width:768px) {
+    .dash {
         margin-top: 10px;
     }
-
-    .first-table div > div.search-box,
-    .second-table div > div.search-box {
-        margin-top: 20px;
-    }
-
-    .box-02,
-    .box-03 {
-        padding: 35px 0;
-    }
 }
+    @media(max-width:575px) {
 
-@media(max-width:320px) {
-    .dash h4 {
-        font-size: 16px;
-        line-height: 18px;
+        .dash h4 {
+            font-size: 22px;
+            line-height: 28px;
+        }
+
+        .box-01 {
+            border-right: none;
+            height: 130px;
+            border-bottom: 1px solid #d1d1d1;
+            padding-left: 20px;
+        }
+
+        .box-02,
+        .box-03,
+        .box-04,
+        .box-05,
+        .box-06 {
+            height: 130px;
+        }
+
+        .dash-left,
+        dash-right2 {
+            padding: 0;
+        }
+
+        .box-04,
+        .box-05,
+        .box-06 {
+            margin-top: 10px;
+        }
+
+        .first-table div > div.search-box,
+        .second-table div > div.search-box {
+            margin-top: 20px;
+        }
+
+        .box-02,
+        .box-03 {
+            padding: 35px 0;
+        }
     }
 
-}
+    @media(max-width:320px) {
+        .dash h4 {
+            font-size: 16px;
+            line-height: 18px;
+        }
+    }
 
-/* =======================================================================
+    /* =======================================================================
                         note detail
 ==========================================================================*/
 
 
 
-@media(max-width:575px) {
-    section {
-        margin-top: 80px;
+    @media(max-width:575px) {
+        /*section {
+            margin-top: 80px;
+        }*/
+
+        .note-head h6 {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .notes-info span,
+        .notes-info span > h6 {
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+            .notes-info span > h6 {
+                text-align: left;
+            }
+
+        .note-content-02 div p,
+        .notes-info .mark-in span {
+            font-size: 12px;
+        }
+
+        .notes-info .show-rating .rate:not(:checked) > label {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        .note-content-02 div h3 {
+            margin-top: 15px;
+        }
+
+        .customer-review {
+            padding: 10px;
+        }
+
+        .per-name h5 {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .review-cust div > div.show-rating {
+            padding: 0 66px;
+        }
+
+            .review-cust div > div.show-rating .rate:not(:checked) > label {
+                font-size: 20px;
+            }
+
+
+        .rew-p p {
+            font-size: 12px;
+        }
     }
+@media(max-width:320px) {
 
-    .note-head h6 {
-        font-size: 14px;
-        line-height: 18px;
+    .responsive-wrapper img, .responsive-wrapper object, .responsive-wrapper iframe {
+        height:250px;
     }
-
-    .notes-info span,
-    .notes-info span > h6 {
-        font-size: 12px;
-        line-height: 18px;
+    .rew-p p{
+        margin-left:90px;
     }
-
-    .notes-info span > h6 {
-        text-align: left;
-    }
-
-    .note-content-02 div p,
-    .notes-info .mark-in span {
-        font-size: 12px;
-    }
-
-    .notes-info .show-rating .rate:not(:checked) > label {
-        font-size: 16px;
-        line-height: 20px;
-    }
-
-    .note-content-02 div h3 {
-        margin-top: 15px;
-    }
-
-    .customer-review {
-        padding: 10px;
-    }
-
-    .per-name h5 {
-        font-size: 16px;
-        text-align: center;
-        margin-top: 15px;
-    }
-
-    .review-cust div > div.show-rating {
-        padding: 0 66px;
-    }
-
-    .review-cust div > div.show-rating .rate:not(:checked) > label {
-        font-size: 20px;
-    }
+    
 
 
-    .rew-p p {
-        font-size: 12px;
-    }
-}
-
-
-
-/* =======================================================================
+    /* =======================================================================
                             Pagination
 ==========================================================================*/
-@media (max-width:575px) {
-    .pagination-container ul li {
-        line-height: 28px;
-    }
+    @media (max-width:575px) {
+        .pagination-container ul li {
+            line-height: 28px;
+        }
 
-    .pagination-container ul li.pgno {
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-    }
+            .pagination-container ul li.pgno {
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+            }
 
-    .pagination-container ul li.pgno a {
-        font-size: 15px;
-    }
+                .pagination-container ul li.pgno a {
+                    font-size: 15px;
+                }
 
-    .pagination-container ul li:first-child {
-        font-size: 15px;
-    }
+            .pagination-container ul li:first-child {
+                font-size: 15px;
+            }
 
-    .pagination-container ul li:last-child {
-        font-size: 15px;
+            .pagination-container ul li:last-child {
+                font-size: 15px;
+            }
     }
-
-}

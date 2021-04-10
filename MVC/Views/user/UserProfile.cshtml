@@ -74,7 +74,6 @@
                                             @Html.ValidationMessageFor(model => model.profileViewModel.countryCode_phoneNo, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="col-md-9 col-lg-9 col-sm-9">
-                                            @*<input type="number" class="form-control" id="phn" placeholder="Enter your phone number">*@
                                             @Html.TextBoxFor(m => m.profileViewModel.phoneNo, new { type = "number", @id = "phn", @placeholder = "Enter your phone number", @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.profileViewModel.phoneNo, "", new { @class = "text-danger" })
 
@@ -108,7 +107,7 @@
                             <div class="form-content">
                                 <div class="form-group">
                                     <label for="address">Address line 1 *</label>
-                                    @Html.TextBoxFor(m => m.profileViewModel.addressLine1, new { placeholder = "Enter your address", @class = "form-control", id = "address" })
+                                    @Html.TextBoxFor(m => m.profileViewModel.addressLine1, new { placeholder = "Enter your address", @class = "form-control", id = "address", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.profileViewModel.addressLine1, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -125,7 +124,7 @@
                             <div class="form-content">
                                 <div class="form-group">
                                     <label for="city">City *</label>
-                                    @Html.TextBoxFor(m => m.profileViewModel.city, new { placeholder = "Enter your city", @class = "form-control", id = "city" })
+                                    @Html.TextBoxFor(m => m.profileViewModel.city, new { placeholder = "Enter your city", @class = "form-control", id = "city", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.profileViewModel.city, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -134,7 +133,7 @@
                             <div class="form-content">
                                 <div class="form-group">
                                     <label for="state">State *</label>
-                                    @Html.TextBoxFor(m => m.profileViewModel.state, new { placeholder = "Enter your state", @class = "form-control", id = "state" })
+                                    @Html.TextBoxFor(m => m.profileViewModel.state, new { placeholder = "Enter your state", @class = "form-control", id = "state", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.profileViewModel.state, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -143,7 +142,7 @@
                             <div class="form-content">
                                 <div class="form-group">
                                     <label for="zip">ZipCode *</label>
-                                    @Html.TextBoxFor(m => m.profileViewModel.zipcode, new { placeholder = "Enter your zipcode", @class = "form-control", id = "zip" })
+                                    @Html.TextBoxFor(m => m.profileViewModel.zipcode, new { placeholder = "Enter your zipcode", @class = "form-control", id = "zip", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.profileViewModel.zipcode, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -152,7 +151,7 @@
                             <div class="form-content">
                                 <div class="form-group">
                                     <label for="email">Country*</label>
-                                    @Html.DropDownListFor(m => m.profileViewModel.country, ViewBag.CountryLists as SelectList, "Select your country", new { @class = "form-control dropdown-icon", @id = "country" })
+                                    @Html.DropDownListFor(m => m.profileViewModel.country, ViewBag.CountryLists as SelectList, "Select your country", new { @class = "form-control dropdown-icon", @id = "country", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.profileViewModel.country, "", new { @class = "text-danger" })
                                 </div>
                             </div>

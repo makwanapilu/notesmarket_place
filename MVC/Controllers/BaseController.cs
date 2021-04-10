@@ -10,7 +10,7 @@ namespace NotesMarketPlace.Controllers
     public class BaseController : Controller
     {
 
-        notesmarketplaceEntities db = new notesmarketplaceEntities();
+        notesmarketplaceEntities1 db = new notesmarketplaceEntities1();
 
         public tblUserProfile userData;
         public BaseController()
@@ -20,6 +20,7 @@ namespace NotesMarketPlace.Controllers
             {               
                userData = db.tblUserProfiles.Where(e => e.userID == CommonViewModel.uId).SingleOrDefault();
                 CommonViewModel.profileViewModel = userData;
+                CommonViewModel.configViewModel = db.tblSystemConfigs.FirstOrDefault();
             }
 
         }

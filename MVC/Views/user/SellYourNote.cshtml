@@ -7,7 +7,7 @@
 }
 
 <div>
-    <section id="dashboard" class="table-page">
+    <section id="dashboard" class="table-page fixheight">
         <!--Dashbord-->
         <div class="content-box-md">
             <div class="container">
@@ -114,7 +114,12 @@
                                 </thead>
                                 <tbody>
                                     @{
+
                                         IPagedList<NotesMarketPlace.Models.ViewModel> mynotes = ViewBag.Inprogress;
+                                        if (mynotes.Count() == 0)
+                                        {
+                                            <tr> <td colspan="5" class="align-middle"> Records not found </td></tr>
+                                        }
                                         foreach (NotesMarketPlace.Models.ViewModel mynote in mynotes)
                                         {
                                             <tr>
@@ -141,18 +146,17 @@
 
                             @if (ViewBag.alertDownload != null)
                             {
-                        <script type="text/javascript">
-
-                            function confirmToDel(noteviewModelId) {
-                                    var r = confirm("@ViewBag.alertDownload");
-                                    if (r) {
-                                        callDeleMethod(noteviewModelId);
+                                <script type="text/javascript">
+                                    function confirmToDel(noteviewModelId) {
+                                        var r = confirm("@ViewBag.alertDownload");
+                                        if (r) {
+                                            callDeleMethod(noteviewModelId);
+                                        }
                                     }
-                            }
-                            function callDeleMethod(noteviewModelId) {
-                                window.location.replace("/user/DeleteNote?id="+noteviewModelId);
-                            }
-                        </script>
+                                function callDeleMethod(noteviewModelId) {
+                                    window.location.replace("/user/DeleteNote?id="+noteviewModelId);
+                                }
+                                </script>
                             }
 
 
@@ -201,25 +205,29 @@
 
                                     @{
                                         IPagedList<NotesMarketPlace.Models.ViewModel> publishnotes = ViewBag.Published;
+                                        if (publishnotes.Count() == 0)
+                                        {
+                                            <tr> <td colspan="6" class="align-middle"> Records not found </td></tr>
+                                        }
                                         foreach (NotesMarketPlace.Models.ViewModel publishnote in publishnotes)
                                         {
-                                                <tr>
-                                                    <td>@publishnote.noteViewModel.createdDate</td>
-                                                    <td>@publishnote.noteViewModel.noteTitle</td>
-                                                    <td>@publishnote.categoryViewModel.categoryName</td>
-                                                    @if (publishnote.noteViewModel.isPaid)
-                                                    {
-                                                        <td> Paid </td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td> Free </td>
+                                            <tr>
+                                                <td>@publishnote.noteViewModel.createdDate</td>
+                                                <td>@publishnote.noteViewModel.noteTitle</td>
+                                                <td>@publishnote.categoryViewModel.categoryName</td>
+                                                @if (publishnote.noteViewModel.isPaid)
+                                                {
+                                                    <td> Paid </td>
+                                                }
+                                                else
+                                                {
+                                                    <td> Free </td>
 
-                                                    }
-                                                    <td>$@publishnote.noteViewModel.sellingPrice</td>
-                                                    <td><a href="/user/NoteDetails?id=@publishnote.noteViewModel.id"><img src="~/Content/images/icon-image/eye.png" class="eye-img"></a></td>
+                                                }
+                                                <td>$@publishnote.noteViewModel.sellingPrice</td>
+                                                <td><a href="/user/NoteDetails?id=@publishnote.noteViewModel.id"><img src="~/Content/images/icon-image/eye.png" class="eye-img"></a></td>
 
-                                                </tr>
+                                            </tr>
                                         }
                                     }
                                 </tbody>

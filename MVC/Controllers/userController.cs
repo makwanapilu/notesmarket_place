@@ -16,7 +16,7 @@ namespace NotesMarketPlace.Controllers
 {
     public class userController : BaseController
     {
-        notesmarketplaceEntities db = new notesmarketplaceEntities();
+        notesmarketplaceEntities1 db = new notesmarketplaceEntities1();
         // GET: user
         public ActionResult Login()
         {
@@ -60,7 +60,7 @@ namespace NotesMarketPlace.Controllers
 
                     var data2 = db.tblUserProfiles.Where(m => m.userID.Equals(data.id)).SingleOrDefault();
 
-                    if (data.isEmailVerified == true)
+                    if (data.isEmailVerified == true && data.isActive)
                     {
                         if (user2.Rememberme == true)
                         {
@@ -69,25 +69,27 @@ namespace NotesMarketPlace.Controllers
                             cookie.Expires = DateTime.Now.AddDays(2);
                             HttpContext.Response.Cookies.Add(cookie);
                         }
-                        //else
-                        //{
-                        //    cookie.Expires = DateTime.Now.AddDays(-1);
-                        //    HttpContext.Response.Cookies.Add(cookie);
-                        //}
                         if (data2!= null && data2.isProfileSet)
                         {
                             if (data.roleID == 5)
                             {
                                 return RedirectToAction("SearchNote");
                             }
-                            else if (data.roleID == 1)
+                            else if (data.roleID == 1 || data.roleID == 6)
                             {
                                 return RedirectToAction("Dashboard", "admin");
                             }
                         }
                         else
                         {
-                            return RedirectToAction("UserProfile");
+                            if (data.roleID == 5)
+                            {
+                                return RedirectToAction("UserProfile");
+                            }
+                            else if (data.roleID == 1 || data.roleID == 6)
+                            {
+                                return RedirectToAction("Dashboard", "admin");
+                            }
                         }
 
                     }
@@ -461,15 +463,11 @@ namespace NotesMarketPlace.Controllers
 
         public ActionResult DeleteNote(int? id)
         {
-            ViewBag.alertDownload = string.Format("Are you sure you want to delete this note. ");
-            //if (ViewBag.alertDownload)
-            //{
+            ViewBag.alertDownload = string.Format("Are you sure you want to delete this note?");
             tblNoteDetail noteDetail = db.tblNoteDetails.Find(id);
             db.tblNoteDetails.Remove(noteDetail);
             db.SaveChanges();
             return RedirectToAction("SellYourNote");
-            //}
-            //return HttpNotFound();
 
         }
 
@@ -524,11 +522,6 @@ namespace NotesMarketPlace.Controllers
                
         public ActionResult EditNoteDetails(int id)
         {
-            //var check = db.tblNoteDetails.Where(m => m.id.Equals(id)).FirstOrDefault();
-            //if (check.isNoteDetailSet)
-            //{
-
-            //}
             //get category list from database and send to view
             var categorylist = db.tblManageNoteCategories.ToList();
             ViewBag.CategoryList = new SelectList(categorylist, "id", "categoryName");
@@ -571,7 +564,7 @@ namespace NotesMarketPlace.Controllers
             }
             else
             {
-                oldData.status = 6;
+                oldData.status = 4;
             }
             oldData.noteCategory = noteDetail.noteCategory;
             oldData.noteType = noteDetail.noteType;
@@ -622,8 +615,35 @@ namespace NotesMarketPlace.Controllers
                 noteDetail.notepreviewFile.SaveAs(pdffilenames);
             }
 
-            db.SaveChanges();
+            int i = db.SaveChanges();
+            if (oldData.status == 4 && i > 0)
+            {
+                //server emailID/support emailID
+                var fromMail = new MailAddress("makwanapilu664@gmail.com");
+                //admin emailID
+                var toMail = new MailAddress("priyamakwana133@gmail.com");
+                var frontEmailPassowrd = "zkocvjbxekpigamp";
+                string subject = Session["Name"] + " sent his note for review";
+                string body = "Hello Admins,<br/><br/>We want to inform you that "+Session["Name"]+" sent his note<br/>"+oldData.noteTitle+ " for review. Please look at the notes and take required actions.<br/><br/>Regards,<br/>Notes Marketplace";                
 
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromMail.Address, frontEmailPassowrd)
+
+                };
+                using (var message = new MailMessage(fromMail, toMail)
+                {
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = true
+                })
+                    smtp.Send(message);
+            }
             ViewBag.isPageOfEdit = true;
             return RedirectToAction("SellYourNote");
         }
@@ -684,19 +704,18 @@ namespace NotesMarketPlace.Controllers
                     //var free_paid =  db.tblReferenceDatas.tol
 
                     noteDetail.sellerID = (int)Session["userID"];
-                    noteDetail.actionedBy = 14;
+                    //noteDetail.actionedBy = 14;
                     noteDetail.isNoteDetailSet = false;
                     noteDetail.isActive = true;
                     noteDetail.createdDate = DateTime.Now;
-                    noteDetail.adminRemark = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt et, consequuntur! Tempora molestiae deserunt in culpa, repellendus voluptatum necessitatibus, perferendis eos ad consequuntur consequatur officiis. Alias repellendus sunt, laboriosam inventore";
-
+                    
                     if (noteDetail.imgFile != null)
                     {
                         //save note picture with random number
                         string r = CreateRandomString();
                         string filename = Path.GetFileNameWithoutExtension(noteDetail.imgFile.FileName);
                         string extension = Path.GetExtension(noteDetail.imgFile.FileName);
-                        filename = filename.Replace(" ","_").Replace("-","_") + r + extension;
+                        filename = filename.Replace(" ","_").Replace("-","_") + r + extension;                        
                         noteDetail.notePicture = "~/Image/notePhoto/" + filename;
                         filename = Path.Combine(Server.MapPath("~/Image/notePhoto/"), filename);
                         noteDetail.imgFile.SaveAs(filename);
@@ -709,6 +728,7 @@ namespace NotesMarketPlace.Controllers
                         string pdffilename = Path.GetFileNameWithoutExtension(noteDetail.pdfFile.FileName);
                         string extensions = Path.GetExtension(noteDetail.pdfFile.FileName);
                         pdffilename = pdffilename.Replace(" ", "_").Replace("-", "_") + d + extensions;
+                        noteDetail.fileSize = (noteDetail.pdfFile.ContentLength/1024).ToString();
                         noteDetail.filePath = "~/Image/notePdf/" + pdffilename;
                         pdffilename = Path.Combine(Server.MapPath("~/Image/notePdf/"), pdffilename);
                         noteDetail.pdfFile.SaveAs(pdffilename);
@@ -1257,7 +1277,6 @@ namespace NotesMarketPlace.Controllers
                     else
                     {
                         d1.isPaid = true;
-                        d1.attachementDownloadDate = DateTime.Now;
                         d1.isSellerHasAllowedDownload = false;
                         d1.isAttachmentDownloaded = false;
                         db.tblDownloads.Add(d1);
@@ -1303,11 +1322,17 @@ namespace NotesMarketPlace.Controllers
 
         public ActionResult DownloadBookfromMyWindow([Optional] int? bookId)
         {
+            var check = db.tblDownloads.FirstOrDefault(m => m.noteID == bookId);    
+            if(check != null)
+            {
+                check.isAttachmentDownloaded = true;
+                check.attachementDownloadDate = DateTime.Now;
+                db.SaveChanges();
+            }
             var q1 = db.tblNoteDetails.FirstOrDefault(m => m.id == bookId);
             string notepath = q1.filePath;
             var pdffilename = Path.Combine(Server.MapPath(notepath));
             return File(pdffilename, ".pdf");
-
         }
                 
         [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
@@ -1318,12 +1343,12 @@ namespace NotesMarketPlace.Controllers
             ViewBag.downloadID = dID;
             ViewBag.star = rate;
             ViewBag.value = ratingComment;
-
-            var check = db.tblDownloads.Where(m => m.noteID == dID).SingleOrDefault();
+            var b = Convert.ToInt32(Session["userID"]);
+            var check = db.tblDownloads.Where(m => m.noteID == dID && m.downloader == b).FirstOrDefault();
 
             db.Configuration.ValidateOnSaveEnabled = false;
 
-            var findObj = db.tblNoteReviews.Where(m => m.againstDownloadID == check.seller).FirstOrDefault();
+            var findObj = db.tblNoteReviews.Where(m => m.noteID == dID && m.reviewedByID == b).FirstOrDefault();
             if (findObj == null)
             {
                 if (check != null)
@@ -1331,7 +1356,7 @@ namespace NotesMarketPlace.Controllers
                     reviewOfNote.noteID = check.noteID;
                     reviewOfNote.rating = Convert.ToDecimal(rate);
                     reviewOfNote.comments = ratingComment;
-                    reviewOfNote.againstDownloadID = check.seller;
+                    reviewOfNote.againstDownloadID = 2;
                     reviewOfNote.reviewedByID = (int)Session["userID"];
                     reviewOfNote.createdDate = DateTime.Now;
                     reviewOfNote.createdBy = (int)Session["userID"];
@@ -1339,7 +1364,6 @@ namespace NotesMarketPlace.Controllers
                     db.tblNoteReviews.Add(reviewOfNote);
                     db.SaveChanges();
                 }
-
             }
             else
             {
@@ -1357,32 +1381,62 @@ namespace NotesMarketPlace.Controllers
         public ActionResult ReportAsInappropriate(int dID, string inappropriateComment)
         {
             tblNoteReportedIsuue issueOfNote = new tblNoteReportedIsuue();
-            var check = db.tblDownloads.Where(m => m.noteID == dID).SingleOrDefault();
+            var b = Convert.ToInt32(Session["userID"]);
+            var check = db.tblDownloads.Where(m => m.noteID == dID && m.downloader == b).FirstOrDefault();
 
             db.Configuration.ValidateOnSaveEnabled = false;
 
-            var findObj = db.tblNoteReportedIsuues.Where(m => m.againstDownloadID == check.seller).FirstOrDefault();
+            var findObj = db.tblNoteReportedIsuues.Where(m => m.noteID == dID && m.reportedByID == b).FirstOrDefault();
             if (findObj == null)
             {
                 if (check != null)
                 {
                     issueOfNote.noteID = check.noteID;
                     issueOfNote.reportedByID = (int)Session["userID"];
-                    issueOfNote.againstDownloadID = check.seller;
+                    issueOfNote.againstDownloadID = 2;
                     issueOfNote.remarks = inappropriateComment;
                     issueOfNote.createdDate = DateTime.Now;
                     issueOfNote.createdBy = (int)Session["userID"];
                     db.tblNoteReportedIsuues.Add(issueOfNote);
-                    db.SaveChanges();
-                }
+                    int i = db.SaveChanges();
+                    var a = db.tblUsers.Where(m => m.id.Equals(check.seller)).Select(m => m.firstName).FirstOrDefault();
+                    if (i > 0)
+                    {
+                        //server emailID/support emailID
+                        var fromMail = new MailAddress("makwanapilu664@gmail.com");
+                        //admin emailID
+                        var toMail = new MailAddress("priyamakwana133@gmail.com");
+                        var frontEmailPassowrd = "zkocvjbxekpigamp";
+                        string subject = Session["Name"] + " Reported an issue for" + check.noteTitle;
+                        string body = "Hello Admins,<br/><br/>We want to inform you that, " + Session["Name"] + " Reported an issue for " + a + "’s Note with title " + check.noteTitle + ".Please look at the notes and take required actions. < br/><br/>Regards,<br/>Notes Marketplace";
 
+                        var smtp = new SmtpClient
+                        {
+                            Host = "smtp.gmail.com",
+                            Port = 587,
+                            EnableSsl = true,
+                            DeliveryMethod = SmtpDeliveryMethod.Network,
+                            UseDefaultCredentials = false,
+                            Credentials = new NetworkCredential(fromMail.Address, frontEmailPassowrd)
+
+                        };
+                        using (var message = new MailMessage(fromMail, toMail)
+                        {
+                            Subject = subject,
+                            Body = body,
+                            IsBodyHtml = true
+                        })
+                            smtp.Send(message);
+                    }
+                }
             }
             else
             {
                 findObj.remarks = inappropriateComment;
                 findObj.modifiedDate = DateTime.Now;
                 findObj.modifiedBy = (int)Session["userID"];
-                db.SaveChanges();
+                int i = db.SaveChanges();
+                
             }
             return RedirectToAction("MyDownload");
         }

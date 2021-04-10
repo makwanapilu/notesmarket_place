@@ -3,7 +3,7 @@
 ===================================================*/
 html,
 body {
-    height: 100%;
+    
 }
 
 body {
@@ -73,7 +73,9 @@ section {
     background-position: center;
     background-size: cover;
 }
-
+.fixheight {
+    min-height:calc(100vh - 226px);
+}
 /* ================================================
                     Dashboard
 ===================================================*/
@@ -441,11 +443,14 @@ button.btn {
     height: 45px;
     text-transform: uppercase;
 }
+    button.btn:hover{
+        color: #fff;
+    }
 
-.link-for-registration {
-    padding: 0;
-    margin: 0;
-}
+    .link-for-registration {
+        padding: 0;
+        margin: 0;
+    }
 
 .link-for-registration p {
     color: #333333;
@@ -461,10 +466,7 @@ button.btn {
     color: #6255a5;
     text-decoration: none;
 }
-/*
-#login_status {
-    display: none;
-}
+
 /*-----Sign up-----*/
 #register_status {
     display: none;
@@ -1641,6 +1643,10 @@ td .dropdown {
 
 ul.navbar-nav > li {
     margin: 10px 0;
+}
+
+.navbar-nav .nav-link span img {
+    border-radius: 50%;
 }
 
 ul.navbar-nav > li > a {

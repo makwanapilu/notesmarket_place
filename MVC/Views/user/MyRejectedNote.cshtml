@@ -7,7 +7,7 @@
     ViewBag.Title = "My RejectedNotes";
 }
 
-<section id="myrejectednote" class="table-page">
+<section id="myrejectednote" class="table-page fixheight">
     <div class="content-box-md">
         <div class="container">
 
@@ -39,12 +39,15 @@
                             <th scope="col">@Html.ActionLink("Category", "MyRejectedNote", new { SortOrder = ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc"), SortBy = "Category" })</th>
                             <th scope="col"></th>
                             <th scope="col">Remarks</th>
-                            @*<th scope="col">Clone</th>*@
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
+                        @if (Model.Count() == 0)
+                        {
+                            <tr> <td colspan="9" class="align-middle"> Records not found </td></tr>
+                        }
                         @foreach (NotesMarketPlace.Models.ViewModel item in (IEnumerable<NotesMarketPlace.Models.ViewModel>)ViewData.Model)
                         {
                             <tr>
@@ -55,7 +58,6 @@
                                 <td>@item.categoryViewModel.categoryName</td>
                                 <td></td>
                                 <td>Lorem Ipsum is simply dummy text</td>
-                                @*<td>Clone</td>*@
                                 <td></td>
                                 <td>
                                     <div class="dropdown">
@@ -66,8 +68,8 @@
                                     </div>
                                 </td>
                             </tr>
-                        }                            
-                        </tbody>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

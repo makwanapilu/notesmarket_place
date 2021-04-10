@@ -11,8 +11,8 @@ namespace NotesMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class tblNoteDetail
     {
@@ -26,26 +26,19 @@ namespace NotesMarketPlace.Models
         }
 
         public int id { get; set; }
-
         [Required]
         public int sellerID { get; set; }
-
         [Required]
         public int status { get; set; }
-
-        [Required]
-        public int actionedBy { get; set; }
+        public Nullable<int> actionedBy { get; set; }
         public string adminRemark { get; set; }
-
         [Required]
         public string noteTitle { get; set; }
         public string notePicture { get; set; }
-
         [Required]
         public int noteCategory { get; set; }
         public string noteUniversity { get; set; }
         public Nullable<int> noteType { get; set; }
-
         [Required]
         public string description { get; set; }
         public Nullable<int> numberOfPage { get; set; }
@@ -54,7 +47,6 @@ namespace NotesMarketPlace.Models
         public string courseName { get; set; }
         public string courseCode { get; set; }
         public string professor { get; set; }
-
         [Required]
         public bool isPaid { get; set; }
         public Nullable<decimal> sellingPrice { get; set; }
@@ -63,15 +55,12 @@ namespace NotesMarketPlace.Models
         public Nullable<int> createdBy { get; set; }
         public Nullable<System.DateTime> modifiedDate { get; set; }
         public Nullable<int> modifiedBy { get; set; }
-
         [Required]
         public bool isActive { get; set; }
-
         [Required]
         public string filePath { get; set; }
-
         public bool isNoteDetailSet { get; set; }
-
+        public string fileSize { get; set; }
         public HttpPostedFileBase imgFile { get; set; }
 
         public HttpPostedFileBase pdfFile { get; set; }
@@ -80,19 +69,18 @@ namespace NotesMarketPlace.Models
 
         public string SelectedRadioButtonValue { get; set; }
 
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDownload> tblDownloads { get; set; }
-        public virtual tblManageNoteCategory tblManageNoteCategory { get; set; }
-        public virtual tblManageNoteType tblManageNoteType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteAttachement> tblNoteAttachements { get; set; }
-        public virtual tblReferenceData tblReferenceData { get; set; }
-        public virtual tblUser tblUser { get; set; }
-        public virtual tblUser tblUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteReportedIsuue> tblNoteReportedIsuues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteReview> tblNoteReviews { get; set; }
+        public virtual tblManageNoteCategory tblManageNoteCategory { get; set; }
+        public virtual tblManageNoteType tblManageNoteType { get; set; }
+        public virtual tblUser tblUser { get; set; }
+        public virtual tblUser tblUser1 { get; set; }
+        public virtual tblReferenceData tblReferenceData { get; set; }
     }
 }

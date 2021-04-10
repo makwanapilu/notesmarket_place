@@ -11,8 +11,8 @@ namespace NotesMarketPlace.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class tblUser
     {
@@ -24,41 +24,34 @@ namespace NotesMarketPlace.Models
             this.tblManageCountries = new HashSet<tblManageCountry>();
             this.tblManageNoteCategories = new HashSet<tblManageNoteCategory>();
             this.tblManageNoteTypes = new HashSet<tblManageNoteType>();
-            this.tblNoteDetails = new HashSet<tblNoteDetail>();
-            this.tblNoteDetails1 = new HashSet<tblNoteDetail>();
             this.tblNoteReportedIsuues = new HashSet<tblNoteReportedIsuue>();
             this.tblNoteReviews = new HashSet<tblNoteReview>();
             this.tblUserProfiles = new HashSet<tblUserProfile>();
+            this.tblNoteDetails = new HashSet<tblNoteDetail>();
+            this.tblNoteDetails1 = new HashSet<tblNoteDetail>();
         }
 
         public int id { get; set; }
         public int roleID { get; set; }
-
         [Required]
         [RegularExpression(@"^[A-Za-z""'\s-]*$", ErrorMessage = "First Name should only contain Letters.")]
         public string firstName { get; set; }
-
         [Required]
         [RegularExpression(@"^[A-Za-z""'\s-]*$", ErrorMessage = "Last Name should only contain Letters.")]
         public string lastName { get; set; }
-
         [Required]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         [RegularExpression(@"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", ErrorMessage = "Invalid email address.")]
         public string emailID { get; set; }
         public bool isEmailVerified { get; set; }
-
         [Required]
         [RegularExpression(@"^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])(\\S)*[A-Za-z\d@$!%*?&]{6,24}$", ErrorMessage = "Password must be strong")]
         public string password { get; set; }
-
         [Required]
         [System.ComponentModel.DataAnnotations.Compare("password")]
         public string Confirmpassword { get; set; }
-
         [DisplayName("Rememberme")]
         public bool Rememberme { get; set; }
-
         public Nullable<System.DateTime> createdDate { get; set; }
         public Nullable<int> createdBy { get; set; }
         public Nullable<System.DateTime> modifiedDate { get; set; }
@@ -76,15 +69,15 @@ namespace NotesMarketPlace.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblManageNoteType> tblManageNoteTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblNoteDetail> tblNoteDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblNoteDetail> tblNoteDetails1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteReportedIsuue> tblNoteReportedIsuues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteReview> tblNoteReviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUserProfile> tblUserProfiles { get; set; }
         public virtual tblUserRole tblUserRole { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblNoteDetail> tblNoteDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblNoteDetail> tblNoteDetails1 { get; set; }
     }
 }

@@ -40,10 +40,10 @@ namespace NotesMarketPlace.Models
     
         public virtual tblNoteDetail tblNoteDetail { get; set; }
         public virtual tblUser tblUser { get; set; }
-        public virtual tblUser tblUser1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteReportedIsuue> tblNoteReportedIsuues { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblNoteReview> tblNoteReviews { get; set; }
+        public virtual tblUser tblUser1 { get; set; }
     }
 }
